@@ -5,45 +5,32 @@
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr v-for="product in products" track-by="id">
+        <tr v-for="product in products" track-by="id" v-on:click.prevent="onEdit(product)">
             <td>{{product.name}}</td>
             <td>{{product.description}}</td>
             <td>{{product.price}}</td>
+            <td><a href="#" v-on:click.prevent.stop="onRemove(product.id)">remove</a></td>
         </tr>
     </tbody>
 </table>
 </template>
 <script>
 export default {
-  data () {
-      return {
-          products: [
-              {
-                  id:'2342424242423',
-                  name: 'cobol 101 vintage',
-                  description: 'Learn cobol with this vintage programming book',
-                  price: 399
-              },
-              {
-                  id:'23423442asf342',
-                  name: 'Sharp c2719 curved tv',
-                  description: 'Watch TV like never before with the brand new curved screen technology',
-                  price: 1995
-              },
-              {
-                  id:'34545309034343',
-                  name: 'Remmington X mechanical keyboard',
-                  description: 'Excellent for gaming and typing, this Remmington X keyboard features tactile, clicky switches for speed and accuracy',
-                  price: 595
-              }
+    props: ['products'],
+    methods: {
+        onEdit(product){
+            console.log("editing")
+            this.$emit('edit', product)
+        },
+        onRemove(productId){
+            this.$emit('remove', productId)
+        }
 
-          ]
-      }
-
-  }
+    }
 }
 </script>
 <style scoped>
