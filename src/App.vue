@@ -1,14 +1,14 @@
 <template>
-<product-list></product-list>
+<manage-products></manage-products>
   
 </template>
 
 <script>
-  import ProductList from './components/ProductList'
+  import ManageProducts from './components/ManageProducts.vue'
 export default {
   
   components:{
-    ProductList
+    ManageProducts
   }
 }
 </script>
